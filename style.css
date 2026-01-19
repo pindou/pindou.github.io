@@ -1,0 +1,87 @@
+:root {
+  --bg: #0b1020;
+  --card: #131b33;
+  --text: #e9eefc;
+  --muted: rgba(233,238,252,.7);
+  --line: rgba(233,238,252,.15);
+  --primary: #4ea1ff;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+               Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(1200px 800px at 20% -10%, #1a2a6a 0%, var(--bg) 45%, #070a14 100%);
+  color: var(--text);
+}
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 18px; }
+h1 { margin: 6px 0 6px; font-size: 28px; }
+.sub { margin: 0; color: var(--muted); }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.card {
+  background: rgba(19,27,51,.92);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+.card.full { grid-column: 1 / -1; }
+
+h2 { margin: 6px 0 12px; font-size: 18px; }
+
+.form { display: grid; gap: 10px; }
+label { display: grid; gap: 6px; font-size: 14px; }
+label.inline { display: flex; align-items: center; gap: 10px; }
+input[type="number"], select, input[type="file"] {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+}
+
+.row { display: flex; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+
+button {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  cursor: pointer;
+}
+button.primary {
+  border-color: rgba(78,161,255,.55);
+  background: rgba(78,161,255,.18);
+}
+button:disabled { opacity: .5; cursor: not-allowed; }
+
+.preview {
+  margin-top: 12px;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255,255,255,.03);
+}
+.preview .label { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+
+canvas {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: white;
+}
+
+.muted { color: var(--muted); font-size: 13px; }
+.foot { padding-top: 6px; padding-bottom: 24px; }
+
+@media (max-width: 980px) {
+  .grid { grid-template-columns: 1fr; }
+}
