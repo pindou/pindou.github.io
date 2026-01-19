@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pixel Art Generator (Offline in Browser)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="wrap">
+    <h1>像素画生成器（浏览器本地计算）</h1>
+    <p class="sub">
+      上传图片 → 选择参数 → 本地生成 → 下载 PNG
+    </p>
+  </header>
+
+  <main class="wrap grid">
+    <section class="card">
+      <h2>1) 上传图片</h2>
+      <input id="fileInput" type="file" accept="image/*" />
+      <div class="row">
+        <button id="btnLoadDemo" type="button">载入示例（可选）</button>
+        <span id="imgInfo" class="muted"></span>
+      </div>
+
+      <div class="preview">
+        <div class="label">原图预览</div>
+        <canvas id="inCanvas"></canvas>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2) 参数设置</h2>
+
+      <div class="form">
+        <label>
+          pixN（网格大小）
+          <input id="pixN" type="number" min="10" max="200" value="50" />
+        </label>
+
+        <label>
+          maxC（最大颜色数）
+          <input id="maxC" type="number" min="1" max="400" value="60" />
+        </label>
+
+        <label class="inline">
+          <input id="showNames" type="checkbox" checked />
+          显示色号文字（像素格 & 色卡）
+        </label>
+
+        <label>
+          fontSize（基础字号）
+          <input id="fontSize" type="number" min="6" max="40" value="14" />
+        </label>
+
+        <label>
+          cellSize（输出每格像素）
+          <input id="cellSize" type="number" min="6" max="60" value="24" />
+        </label>
+
+        <label>
+          色卡位置
+          <select id="palettePos">
+            <option value="right" selected>右侧 right（推荐）</option>
+            <option value="bottom">底部 bottom</option>
+          </select>
+        </label>
+
+        <label>
+          调色板 JSON
+          <select id="paletteFile">
+            <option value="mard221.json" selected>mard221.json</option>
+          </select>
+        </label>
+
+        <div class="row">
+          <button id="btnRun" type="button" class="primary">生成</button>
+          <button id="btnDownload" type="button" disabled>下载 PNG</button>
+          <span id="status" class="muted"></span>
+        </div>
+
+        <details>
+          <summary>高级：色卡 swatch（右侧）布局</summary>
+          <div class="form">
+            <label>
+              swatchWRatio（色块宽=ratio*cellSize）
+              <input id="swatchW" type="number" min="1" max="10" step="0.1" value="3.0" />
+            </label>
+            <label>
+              swatchHRatio（色块高=ratio*cellSize）
+              <input id="swatchH" type="number" min="0.6" max="6" step="0.1" value="1.2" />
+            </label>
+            <label>
+              gapYRatio（色块间距Y）
+              <input id="gapY" type="number" min="0" max="5" step="0.1" value="0.3" />
+            </label>
+            <label>
+              gapXRatio（色块间距X）
+              <input id="gapX" type="number" min="0" max="5" step="0.1" value="0.6" />
+            </label>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="card full">
+      <h2>3) 输出结果</h2>
+      <div class="preview">
+        <div class="label">输出预览</div>
+        <canvas id="outCanvas"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <span class="muted">提示：网页运行时，所有计算在你的浏览器本地完成。</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
